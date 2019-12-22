@@ -22,31 +22,31 @@ Materi magang programming Bayucaraka ITS 2020
 ### For Windows
     - Make sure you have installed Python 3 (Cause we are using Python 3)
     - Install python3-pip
-    '''
+    ```
     python get-pip.py
-    '''
+    ```
     - Install Dronekit-Python
-    '''
+    ```
     pip install dronekit
-    '''
+    ```
 ### For Mac
     - Make sure you have installed Python 3 (Cause we are using Python 3)
     - Install python3-pip
-    '''
+    ```
     sudo easy_install pip
-    '''
+    ```
     - install Dronekit-python
-    '''
+    ```
     pip install dronekit
-    '''
+    ```
 
 ### For Linux
     - Make sure you have installed Python 3 (Cause we are using Python 3)
     - Install python3-pip
-    '''
+    ```
     sudo apt-get install python3-pip python3-dev
-    '''
+    ```
     - install Dronekit-python
-    '''
+    ```
     pip3 install dronekit
-    '''
+    ```
