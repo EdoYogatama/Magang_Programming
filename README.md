@@ -1,5 +1,8 @@
 # Magang_Programming
 Materi magang programming Bayucaraka ITS 2020
+Referensi[
+- [Dronekit](https://dronekit-python.readthedocs.io/en/latest/)
+- Droneki-Python [github-repo](https://github.com/dronekit/dronekit-python)
 
 # Python Dronekit
 ## About Dronekit and Compatibility
