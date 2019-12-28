@@ -56,16 +56,19 @@ def arm_and_tekoff(altitude_target):
         time.sleep(1)
 
 def getWP(lat_home = 0.0, lon_home = 0.0, alt_home = 0.0):
-    waypoints   = wp.setup()
+    wp.setup()
+    lat_target = []
+    lon_target = []
 
-    if lat_home != 0.0 and lon_home != 0.0 and alt_home != 0.0:
-        wp.set_home(lat_home, lon_home, alt_home)
-    else:
-        lat_home = wp.get_home()[0]
-        lon_home = wp.get_home()[1]
-        alt_home = wp.get_home()[2]
+    for i in range(len(wp.gets)):
+        if i == 0:
+            lat_home    = wp.get(i)[0]
+            lon_home    = wp.get(i)[1]
+        else:
+            lat_target.append(wp.get(i)[0])
+            lon_target.append(wp.get(i)[0])
 
-    return lat_home, lon_home, alt_home, waypoints
+    return lat_home,lon_home,lat_target,lon_target
 
 def main():
     altitude_target     = 2.0
@@ -76,17 +79,16 @@ def main():
         print("Mode -- ",vehicle.mode)
 
     arm_and_tekoff(altitude_target)
-    lat_home, lon_home, alt_home, waypoints = getWP
     vehicle.flush()
     time.sleep(1)
 
+    lat_home,lon_home,lat_target,lon_target = getWP()
+    home    = LocationGlobalRelative(lat_home,lon_home,vehicle.location.global_relative_frame.alt)
+
     try:
         for i in range(len(waypoints)):
-            index           = waypoints[i]
-            lat_target      = index[0]
-            lon_target      = index[1]
 
-            location_target = LocationGlobalRelative(lat_target,lon_target,vehicle.location.global_relative_frame.alt)
+            location_target = LocationGlobalRelative(lat_target[i],lon_target[i],vehicle.location.global_relative_frame.alt)
             print('goto ' + location_target)
             vehicle.simple_goto(location_target)
         
