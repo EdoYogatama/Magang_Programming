@@ -53,3 +53,6 @@ sudo apt-get install python3-pip python3-dev
 ```
 pip3 install dronekit
 ```
+
+### Documentation for control
+[Ardupilot movement command](https://dronekit-python.readthedocs.io/en/latest/examples/guided-set-speed-yaw-demo.html)
