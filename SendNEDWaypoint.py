@@ -163,7 +163,7 @@ def convert(lat1,lon1,lat2,lon2,duration):
     distance   = distanceBetween(lat1,lon1,lat2,lon2)
     degreewp     = courseTo(lat1,lon1,lat2,lon2)
 
-    print("degree",degree)
+    #print("degree",degree)
     print("degreewp",degreewp)
 
     output_x = (distance/duration) * math.cos(math.radians(degreewp))
@@ -201,9 +201,22 @@ def main():
             else:
                 vel_x,vel_y = convert(vehicle.location.global_relative_frame.lat,vehicle.location.global_relative_frame.lon,
                                         lat_target[i],lon_target[i],duration)
+            
             send_ned_velocity(vel_y,vel_x,0,duration)
             print("goto " + str(vel_x) + " " + str(vel_y))
-            time.sleep(10)
+            
+              distancenow   = distanceBetween(vehicle.location.global_frame.lat,vehicle.location.global_frame.lon,lat_target[i],lon_target[i])
+
+            while distancenow > 10:
+                distancenow   = get_distance_metres(vehicle.location.global_frame.lat,vehicle.location.global_frame.lon,lat_target[i],lon_target[i])
+                print(distancenow)
+                send_ned_velocity(vel_y,vel_x,0,duration)
+                print("goto " + str(vel_x) + " " + str(vel_y))
+                time.sleep(0.2)   
+                
+            time.sleep(5)
+
+        vehicle.mode = VehicleMode("RTL")
     except KeyboardInterrupt:
         print("Krybord Interrupt")
     
